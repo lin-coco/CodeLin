@@ -7,10 +7,11 @@ import (
 )
 
 var (
-	Rdb            *redis.Client
-	QueueListKey   = "queue:message"
-	DelayKey       = "ZSet:message"
-	QueuePubSubKey = "pubsub:message"
+	Rdb               *redis.Client
+	QueueListKey      = "queue:message"
+	DelayKey          = "ZSet:message"
+	QueuePubSubKey    = "pubsub:message"
+	DistrbutedLockKey = "lock:one"
 )
 
 func init() {
