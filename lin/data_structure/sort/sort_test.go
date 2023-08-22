@@ -54,3 +54,16 @@ func TestMergeSort(t *testing.T) {
 	}
 	t.Log(list)
 }
+
+func TestQuickSort(t *testing.T) {
+	list := []int{9, 8, 7, 6, 5, 4, 3, 2}
+	quickSort(list)
+	for i := 1; i < len(list); i++ {
+		if list[i-1] > list[i] {
+			t.Errorf("排序失败: %v", list)
+			t.Fail()
+			return
+		}
+	}
+	t.Log(list)
+}

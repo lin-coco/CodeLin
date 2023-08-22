@@ -117,5 +117,30 @@ func mergeSort(list []int) {
 // 每一次都找到中间的元素，然后左右两边再找
 // 第一个元素为哨兵，左右两个指针，比哨兵小的放左边，比哨兵大的放右边，右指针先移动
 func quickSort(list []int) {
-
+	var tracking func(start, end int)
+	tracking = func(start, end int) {
+		t1, t2 := start, end
+		if start >= end {
+			return
+		}
+		sentinel := start
+		start++
+		for start < end {
+			for start < end && list[end] >= list[sentinel] {
+				end--
+			}
+			for start < end && list[start] <= list[sentinel] {
+				start++
+			}
+			if start != end {
+				swap(list, start, end)
+			}
+		}
+		if list[start] < list[sentinel] {
+			swap(list, start, sentinel)
+		}
+		tracking(t1, start-1)
+		tracking(start, t2)
+	}
+	tracking(0, len(list)-1)
 }
